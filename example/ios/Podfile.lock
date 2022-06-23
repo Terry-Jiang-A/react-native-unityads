@@ -245,7 +245,7 @@ PODS:
     - React-Core (= 0.63.4)
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
-  - RN-unityads (0.1.0):
+  - rn-unityads (0.1.0):
     - React-Core
     - UnityAds
   - RNGestureHandler (2.4.2):
@@ -281,7 +281,7 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - RN-unityads (from `../..`)
+  - rn-unityads (from `../..`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - UnityAds
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -342,7 +342,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
-  RN-unityads:
+  rn-unityads:
     :path: "../.."
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
@@ -376,11 +376,11 @@ SPEC CHECKSUMS:
   React-RCTText: 5c51df3f08cb9dedc6e790161195d12bac06101c
   React-RCTVibration: ae4f914cfe8de7d4de95ae1ea6cc8f6315d73d9d
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
-  RN-unityads: 9ded7e1d9f29dcbb199a79981c5df7edd77145e8
+  rn-unityads: 392b361e5a2dc31f16e428e1ebe7044d0694f7df
   RNGestureHandler: 61628a2c859172551aa2100d3e73d1e57878392f
   UnityAds: a2274b216f9ed1e4d1d74c08178f21223f08e17a
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 
-PODFILE CHECKSUM: edff049e58508ae1a6ed88a1886f64b59d6f94d2
+PODFILE CHECKSUM: c04b44c054f35f0479f39b1559528f4fc5462466
 
 COCOAPODS: 1.11.2

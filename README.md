@@ -5,13 +5,13 @@ unity ads module
 ## Installation
 
 ```sh
-npm install RN-unityads
+npm install rn-unityads
 ```
 
 ## Usage
 
 ```js
-import Unityads from 'RN-unityads';
+import Unityads from 'rn-unityads';
 
   
   Initialize SDK

@@ -1,5 +1,5 @@
 {
-  "name": "RN-unityads",
+  "name": "rn-unityads",
   "version": "0.1.0",
   "description": "unity ads module",
   "main": "lib/commonjs/index",
@@ -13,7 +13,7 @@
     "android",
     "ios",
     "cpp",
-    "RN-unityads.podspec",
+    "rn-unityads.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build",
