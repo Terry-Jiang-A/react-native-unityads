@@ -1,4 +1,4 @@
-import Unityads from 'react-native-unityads';
+import Unityads from 'RN-unityads';
 
 import React, {useState} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
