@@ -5,13 +5,13 @@ unity ads module
 ## Installation
 
 ```sh
-npm install rn-unityads
+npm install asdaily-rn-unityads
 ```
 
 ## Usage
 
 ```js
-import Unityads from 'rn-unityads';
+import Unityads from 'asdaily-rn-unityads';
 
   
   Initialize SDK
