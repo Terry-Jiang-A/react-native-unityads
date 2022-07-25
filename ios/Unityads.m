@@ -27,7 +27,7 @@
 static NSString *const SDK_TAG = @"UnitySdk";
 static NSString *const TAG = @"Unity Ads";
 
-RCTResponseSenderBlock _onInitialized = nil;
+RCTResponseSenderBlock _onUnityAdsInitialized = nil;
 
 static Unityads *UnityShared; // Shared instance of this bridge module.
 
@@ -75,7 +75,7 @@ RCT_EXPORT_METHOD(initialize :(NSString *)sdkKey :(nonnull NSNumber *)testMode :
     }
     
     self.pluginInitialized = YES;
-    _onInitialized = callback;
+    _onUnityAdsInitialized = callback;
     
     // Initialize
     [UnityAds
@@ -105,7 +105,7 @@ RCT_EXPORT_METHOD(unLoadBottomBanner)
 {
     [self.bottomBannerView removeFromSuperview];
     _bottomBannerView = nil;
-    [self sendReactNativeEventWithName: @"OnbannerViewDidLeaveApplication" body: @{@"adUnitId" : @"unload bannerview"}];
+    [self sendReactNativeEventWithName: @"onBannerViewDidLeaveApplication" body: @{@"adUnitId" : @"unload bannerview"}];
     
 }
 
@@ -133,27 +133,27 @@ RCT_EXPORT_METHOD(unLoadBottomBanner)
 #pragma mark: UnityAdsShowDelegate
 - (void)unityAdsShowComplete:(NSString *)placementId withFinishState:(UnityAdsShowCompletionState)state {
     NSLog(@" - UnityAdsShowDelegate unityAdsShowComplete %@ %ld", placementId, state);
-    [self sendReactNativeEventWithName: @"OnunityAdsShowComplete" body: @{@"adUnitId" : placementId,
+    [self sendReactNativeEventWithName: @"onUnityAdsShowComplete" body: @{@"adUnitId" : placementId,
                                                      @"state" : @(state)}];
     
 }
 
 - (void)unityAdsShowFailed:(NSString *)placementId withError:(UnityAdsShowError)error withMessage:(NSString *)message {
     NSLog(@" - UnityAdsShowDelegate unityAdsShowFailed %@ %ld", message, error);
-    [self sendReactNativeEventWithName: @"OnunityAdsShowFailed" body: @{@"adUnitId" : placementId,
+    [self sendReactNativeEventWithName: @"onUnityAdsShowFailed" body: @{@"adUnitId" : placementId,
                                                                         @"message" : message,              @"error" : @(error)}];
     // Optionally execute additional code, such as attempting to load another ad.
 }
  
 - (void)unityAdsShowStart:(NSString *)placementId {
     NSLog(@" - UnityAdsShowDelegate unityAdsShowStart %@", placementId);
-    [self sendReactNativeEventWithName: @"OnunityAdsShowStart" body: @{@"adUnitId" : placementId}];
+    [self sendReactNativeEventWithName: @"onUnityAdsShowStart" body: @{@"adUnitId" : placementId}];
     
 }
  
 - (void)unityAdsShowClick:(NSString *)placementId {
     NSLog(@" - UnityAdsShowDelegate unityAdsShowClick %@", placementId);
-    [self sendReactNativeEventWithName: @"OnunityAdsShowClick" body: @{@"adUnitId" : placementId}];
+    [self sendReactNativeEventWithName: @"onUnityAdsShowClick" body: @{@"adUnitId" : placementId}];
     
 }
 
@@ -170,13 +170,13 @@ RCT_EXPORT_METHOD(unLoadBottomBanner)
 - (void)bannerViewDidClick:(UADSBannerView *)bannerView {
     // Called when the banner is clicked.
     NSLog(@"Banner was clicked for Ad Unit or Placement: %@", bannerView.placementId);
-    [self sendReactNativeEventWithName: @"OnbannerViewDidClick" body: @{@"adUnitId" : bannerView.placementId}];
+    [self sendReactNativeEventWithName: @"onBannerViewDidClick" body: @{@"adUnitId" : bannerView.placementId}];
     
 }
  
 - (void)bannerViewDidLeaveApplication:(UADSBannerView *)bannerView {
     // Called when the banner links out of the application.
-    [self sendReactNativeEventWithName: @"OnbannerViewDidLeaveApplication" body: @{@"adUnitId" : bannerView.placementId}];
+    [self sendReactNativeEventWithName: @"onBannerViewDidLeaveApplication" body: @{@"adUnitId" : bannerView.placementId}];
     
 }
  
@@ -185,7 +185,7 @@ RCT_EXPORT_METHOD(unLoadBottomBanner)
     // Called when an error occurs showing the banner view object.
     NSLog(@"Banner encountered an error for Ad Unit or Placement: %@ with error message %@", bannerView.placementId, [error localizedDescription]);
     // Note that the UADSBannerError can indicate no fill (see API documentation).
-    [self sendReactNativeEventWithName: @"OnbannerViewDidError" body: @{@"adUnitId" : bannerView.placementId,
+    [self sendReactNativeEventWithName: @"onBannerViewDidError" body: @{@"adUnitId" : bannerView.placementId,
                                                                         @"error" : [error localizedDescription]}];
     
 }
@@ -195,7 +195,7 @@ RCT_EXPORT_METHOD(unLoadBottomBanner)
 - (void)initializationComplete {
     //NSLog(@" - UnityAdsInitializationDelegate initializationComplete" );
     self.sdkInitialized = YES;
-    _onInitialized(@[@"success"]);
+    _onUnityAdsInitialized(@[@"success"]);
     // Pre-load an ad when initialization succeeds, so it is ready to show:
     //[UnityAds load:@"iOS_Interstitial" loadDelegate:self];
 }
@@ -203,7 +203,7 @@ RCT_EXPORT_METHOD(unLoadBottomBanner)
 - (void)initializationFailed:(UnityAdsInitializationError)error withMessage:(NSString *)message {
     NSLog(@" - UnityAdsInitializationDelegate initializationFailed with message: %@", message );
     self.pluginInitialized = NO;
-    _onInitialized(@[@" - UnityAdsInitializationDelegate initializationFailed with message: %@", message ]);
+    _onUnityAdsInitialized(@[@" - UnityAdsInitializationDelegate initializationFailed with message: %@", message ]);
    
 }
 
@@ -211,7 +211,7 @@ RCT_EXPORT_METHOD(unLoadBottomBanner)
 #pragma mark: UnityAdsLoadDelegate
 - (void)unityAdsAdLoaded:(NSString *)placementId {
     NSLog(@" - UnityAdsLoadDelegate unityAdsAdLoaded %@", placementId);
-    [self sendReactNativeEventWithName: @"OnunityAdsAdLoaded" body: @{@"adUnitId" : placementId}];
+    [self sendReactNativeEventWithName: @"onUnityAdsAdLoaded" body: @{@"adUnitId" : placementId}];
     [UnityAds show:ROOT_VIEW_CONTROLLER placementId:placementId showDelegate:self];
 }
  
@@ -219,7 +219,7 @@ RCT_EXPORT_METHOD(unLoadBottomBanner)
                      withError:(UnityAdsLoadError)error
                    withMessage:(NSString *)message {
     NSLog(@" - UnityAdsLoadDelegate unityAdsAdFailedToLoad %@", placementId);
-    [self sendReactNativeEventWithName: @"OnunityAdsAdFailedToLoad" body: @{@"adUnitId" : placementId,
+    [self sendReactNativeEventWithName: @"onUnityAdsAdFailedToLoad" body: @{@"adUnitId" : placementId,
                                                      @"error" : @(error),
                                                      @"message" : message}];
     
@@ -235,18 +235,18 @@ RCT_EXPORT_METHOD(unLoadBottomBanner)
 // From RCTBridgeModule protocol
 - (NSArray<NSString *> *)supportedEvents
 {
-    return @[@"OnunityAdsAdLoaded",
-             @"OnunityAdsAdFailedToLoad",
+    return @[@"onUnityAdsAdLoaded",
+             @"onUnityAdsAdFailedToLoad",
              
-             @"OnbannerViewDidError",
-             @"OnbannerViewDidLeaveApplication",
-             @"OnbannerViewDidClick",
+             @"onBannerViewDidError",
+             @"onBannerViewDidLeaveApplication",
+             @"onBannerViewDidClick",
              @"bannerViewDidLoad",
              
-             @"OnunityAdsShowClick",
-             @"OnunityAdsShowStart",
-             @"OnunityAdsShowFailed",
-             @"OnunityAdsShowComplete"];
+             @"onUnityAdsShowClick",
+             @"onUnityAdsShowStart",
+             @"onUnityAdsShowFailed",
+             @"onUnityAdsShowComplete"];
 }
 
 - (void)startObserving

@@ -14,7 +14,7 @@ npm install asdaily-rn-unityads
 import Unityads from 'asdaily-rn-unityads';
 
   
-  Initialize SDK
+  //Initialize SDK
   Unityads.initialize(SDK_KEY, 1, (callback) => { //second parameter for test mode, 1 default. 0 for production.
     
 
@@ -22,9 +22,9 @@ import Unityads from 'asdaily-rn-unityads';
     attachAdListeners(); //need to call removeEventListener to remove listeners.
   });
   
-  Attach ad Listeners for rewarded ads, and banner ads, and so on.
+  //Attach ad Listeners for rewarded ads, and banner ads, and so on.
   function attachAdListeners() {
-    Unityads.addEventListener('OnunityAdsAdFailedToLoad', (errorInfo) => {
+    Unityads.addEventListener('onUnityAdsAdFailedToLoad', (errorInfo) => {
       // ad failed to load
       // We recommend retrying with exponentially higher delays up to a maximum delay (in this case 64 seconds)
       setInterstitialRetryAttempt(interstitialRetryAttempt + 1);
@@ -32,28 +32,28 @@ import Unityads from 'asdaily-rn-unityads';
       var retryDelay = Math.pow(2, Math.min(6, interstitialRetryAttempt));
       logStatus('Interstitial ad failed to load with code ' + errorInfo + ' - retrying in ' + retryDelay + 's');
     });
-    Unityads.addEventListener('OnunityAdsAdLoaded', (adInfo) => {
+    Unityads.addEventListener('onUnityAdsAdLoaded', (adInfo) => {
       logStatus('unity AdLoaded, with ID: ' +adInfo.adUnitId);
     });
 
 
-    Unityads.addEventListener('OnunityAdsShowComplete', (adInfo) => {
+    Unityads.addEventListener('onUnityAdsShowComplete', (adInfo) => {
       setUnityAdShowCompleteState(adsShowState.completed);
       logStatus('Ads show completed, with ID: ' +adInfo.adUnitId +" state: "+ adInfo.state);
       if (adInfo.adUnitId == REWARDED_AD_UNIT_ID && adInfo.state == 1) {
         console.log('reward the user');
       }
     });
-    Unityads.addEventListener('OnunityAdsShowFailed', (adInfo) => {
+    Unityads.addEventListener('onUnityAdsShowFailed', (adInfo) => {
       setUnityAdShowCompleteState(adsShowState.failed);
       logStatus('Ads show failed, with ID: '+adInfo.adUnitId +"message: "+ adInfo.message +"error: "+adInfo.error);
       
     });
-    Unityads.addEventListener('OnunityAdsShowStart', (adInfo) => {
+    Unityads.addEventListener('onUnityAdsShowStart', (adInfo) => {
       setUnityAdShowCompleteState(adsShowState.start);
       logStatus('Ads show started , with ID: '+adInfo.adUnitId);
     });
-    Unityads.addEventListener('OnunityAdsShowClick', (adInfo) => {
+    Unityads.addEventListener('onUnityAdsShowClick', (adInfo) => {
       setUnityAdShowCompleteState(adsShowState.click);
       logStatus('Ads show clicked, with ID: '+adInfo.adUnitId);
     });
@@ -64,20 +64,20 @@ import Unityads from 'asdaily-rn-unityads';
       logStatus('Banner ad loaded, with ID: ' +adInfo.adUnitId);
       setIsNativeUIBannerShowing(!isNativeUIBannerShowing);
     });
-    Unityads.addEventListener('OnbannerViewDidError', (errorInfo) => {
+    Unityads.addEventListener('onBannerViewDidError', (errorInfo) => {
       logStatus('Banner ad failed to load with error code ' + errorInfo.code + ' and message: ' + errorInfo.message);
     });
-    Unityads.addEventListener('OnbannerViewDidClick', (adInfo) => {
+    Unityads.addEventListener('onBannerViewDidClick', (adInfo) => {
       logStatus('Banner ad clicked');
     });
-    Unityads.addEventListener('OnbannerViewDidLeaveApplication', (adInfo) => {
+    Unityads.addEventListener('onBannerViewDidLeaveApplication', (adInfo) => {
       logStatus('Banner ad leave application')
       setIsNativeUIBannerShowing(!isNativeUIBannerShowing);
     });
   }
   
   ios:
-  Modify podfile，add Unity Ads SDK：
+  //Modify podfile，add Unity Ads SDK：
   pod 'UnityAds'
   
   For specific usage, please refer to example.

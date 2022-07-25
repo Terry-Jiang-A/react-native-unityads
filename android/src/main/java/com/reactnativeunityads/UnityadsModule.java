@@ -68,7 +68,7 @@ public class UnityadsModule extends ReactContextBaseJavaModule implements IUnity
       public void onUnityAdsAdLoaded(String placementId) {
         WritableMap params = Arguments.createMap();
         params.putString( "adUnitId", placementId );
-        sendReactNativeEvent( "OnunityAdsAdLoaded", params );
+        sendReactNativeEvent( "onUnityAdsAdLoaded", params );
 
         UnityAds.show(sCurrentActivity, placementId, new UnityAdsShowOptions(), showListener);
       }
@@ -81,7 +81,7 @@ public class UnityadsModule extends ReactContextBaseJavaModule implements IUnity
         params.putString( "error", error.toString() );
         params.putString( "message", message );
 
-        sendReactNativeEvent( "OnunityAdsAdFailedToLoad", params );
+        sendReactNativeEvent( "onUnityAdsAdFailedToLoad", params );
       }
     };
 
@@ -94,7 +94,7 @@ public class UnityadsModule extends ReactContextBaseJavaModule implements IUnity
         params.putString( "error", error.toString() );
         params.putString( "message", message );
 
-        sendReactNativeEvent( "OnunityAdsShowFailed", params );
+        sendReactNativeEvent( "onUnityAdsShowFailed", params );
       }
 
       @Override
@@ -102,7 +102,7 @@ public class UnityadsModule extends ReactContextBaseJavaModule implements IUnity
         Log.v("UnityAdsExample", "onUnityAdsShowStart: " + placementId);
         WritableMap params = Arguments.createMap();
         params.putString( "adUnitId", placementId );
-        sendReactNativeEvent( "OnunityAdsShowStart", params );
+        sendReactNativeEvent( "onUnityAdsShowStart", params );
       }
 
       @Override
@@ -110,7 +110,7 @@ public class UnityadsModule extends ReactContextBaseJavaModule implements IUnity
         Log.v("UnityAdsExample", "onUnityAdsShowClick: " + placementId);
         WritableMap params = Arguments.createMap();
         params.putString( "adUnitId", placementId );
-        sendReactNativeEvent( "OnunityAdsShowClick", params );
+        sendReactNativeEvent( "onUnityAdsShowClick", params );
       }
 
       @Override
@@ -120,7 +120,7 @@ public class UnityadsModule extends ReactContextBaseJavaModule implements IUnity
         params.putString( "adUnitId", placementId );
         params.putInt( "state", state.equals(UnityAds.UnityAdsShowCompletionState.COMPLETED)?1:0 );
 
-        sendReactNativeEvent( "OnunityAdsShowComplete", params );
+        sendReactNativeEvent( "onUnityAdsShowComplete", params );
       }
     };
 
@@ -146,7 +146,7 @@ public class UnityadsModule extends ReactContextBaseJavaModule implements IUnity
         params.putString( "code", errorInfo.errorCode.toString() );
         params.putString( "message", errorInfo.errorMessage );
 
-        sendReactNativeEvent( "OnbannerViewDidError", params );
+        sendReactNativeEvent( "onBannerViewDidError", params );
       }
 
       @Override
@@ -156,7 +156,7 @@ public class UnityadsModule extends ReactContextBaseJavaModule implements IUnity
         WritableMap params = Arguments.createMap();
         params.putString( "adUnitId", bannerAdView.getPlacementId() );
 
-        sendReactNativeEvent( "OnbannerViewDidClick", params );
+        sendReactNativeEvent( "onBannerViewDidClick", params );
       }
 
       @Override
@@ -166,7 +166,7 @@ public class UnityadsModule extends ReactContextBaseJavaModule implements IUnity
         WritableMap params = Arguments.createMap();
         params.putString( "adUnitId", bannerAdView.getPlacementId() );
 
-        sendReactNativeEvent( "OnbannerViewDidLeaveApplication", params );
+        sendReactNativeEvent( "onBannerViewDidLeaveApplication", params );
       }
     };
 
@@ -288,7 +288,7 @@ public class UnityadsModule extends ReactContextBaseJavaModule implements IUnity
         WritableMap params = Arguments.createMap();
         params.putString( "adUnitId", "unload banner view" );
 
-        sendReactNativeEvent( "OnbannerViewDidLeaveApplication", params );
+        sendReactNativeEvent( "onBannerViewDidLeaveApplication", params );
 
       }
 
