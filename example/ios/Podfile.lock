@@ -1,5 +1,5 @@
 PODS:
-  - asdaily-rn-unityads (0.1.0):
+  - asdaily-rn-unityads (0.1.1):
     - React-Core
     - UnityAds
   - boost-for-react-native (1.63.0)
@@ -250,7 +250,7 @@ PODS:
     - React-jsi (= 0.63.4)
   - RNGestureHandler (2.4.2):
     - React-Core
-  - UnityAds (4.2.1)
+  - UnityAds (4.6.1)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -350,7 +350,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  asdaily-rn-unityads: ec79186567b0fd9d07a206c64a1ecd010473d973
+  asdaily-rn-unityads: c00a40adb9d868d5a65670cbb3ef75584f25500a
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: cde416483dac037923206447da6e1454df403714
   FBLazyVector: 3bb422f41b18121b71783a905c10e58606f7dc3e
@@ -378,9 +378,9 @@ SPEC CHECKSUMS:
   React-RCTVibration: ae4f914cfe8de7d4de95ae1ea6cc8f6315d73d9d
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
   RNGestureHandler: 61628a2c859172551aa2100d3e73d1e57878392f
-  UnityAds: a2274b216f9ed1e4d1d74c08178f21223f08e17a
+  UnityAds: 824808c73af90fe4302ee0594381c8d515e5ce97
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 
 PODFILE CHECKSUM: fef1c83190e6fcb722617f619a75ea7101144b75
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

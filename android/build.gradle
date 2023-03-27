@@ -56,5 +56,6 @@ repositories {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.aar"])
     //noinspection GradleDynamicVersion
-    implementation "com.facebook.react:react-native:+"  // From node_modules   
+    implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'com.unity3d.ads:unity-ads:4.6.1' //Unity-ads
 }
