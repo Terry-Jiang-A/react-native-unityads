@@ -19,10 +19,10 @@ def safeExtGet(prop, fallback) {
 }
 
 android {
-    compileSdkVersion safeExtGet('Unityads_compileSdkVersion', 29)
+    compileSdkVersion safeExtGet('Unityads_compileSdkVersion', 31)
     defaultConfig {
         minSdkVersion safeExtGet('Unityads_minSdkVersion', 19)
-        targetSdkVersion safeExtGet('Unityads_targetSdkVersion', 29)
+        targetSdkVersion safeExtGet('Unityads_targetSdkVersion', 31)
         versionCode 1
         versionName "1.0"
 
@@ -56,6 +56,6 @@ repositories {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.aar"])
     //noinspection GradleDynamicVersion
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation "com.facebook.react:react-native:0.63.4"  // From node_modules
     implementation 'com.unity3d.ads:unity-ads:4.6.1' //Unity-ads
 }
